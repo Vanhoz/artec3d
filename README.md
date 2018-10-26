@@ -1,24 +1,22 @@
-# README
+# Artec3D test app
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Small guide to deploy the app.
 
-Things you may want to cover:
+You need to have redis installed due to sidekiq usage.
 
-* Ruby version
+## Getting started
 
-* System dependencies
+* Run `bundle install` to install gems and dependencies
 
-* Configuration
+* Create the database: `rails db:create`, adapter: postgres
 
-* Database creation
+* In root create file .env, where should be 3 environmental variables:
+  `GMAIL_USERNAME` for your Gmail account username;
+  `GMAIL_PASSWORD` for your Gmail account password;
+  `SERVICE_URL` for the service you actually want to monitor.
 
-* Database initialization
+* To start monitoring:
+  First, run sidekiq server: `bundle exec sidekiq`
+  Run task `rake start:first_try['your_email']`, where 'your email' is email you want to send messages to.
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Run tests: `bundle exec rspec`
